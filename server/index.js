@@ -13,7 +13,6 @@ const db = mysql.createPool({
     database: "bditens",
 })
 
-
 app.post("/Favorito", (req, res) => {
     const { nome, imagem } = req.body;
     let SQL = "INSERT INTO Favorito ( nome, imagem ) VALUES (?, ?)";
@@ -42,6 +41,14 @@ app.delete("/item/:id_favorito", (req, res) => {
     })
 })
 
-app.listen(3006, () => {
+app.listen(3001, () => {
+    console.log("rodando servidor");
+});
+
+app.start(3001).then(() => {
+    console.log("rodando servidor");
+});
+
+app.startCallback(3001, () => {
     console.log("rodando servidor");
 });
