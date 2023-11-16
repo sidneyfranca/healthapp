@@ -9,14 +9,14 @@ export function Favorito() {
   ]);
 
   useEffect(() => {
-    axios.get("http://10.0.0.101:3001/Favoritos").then(data=>setData1(data.data))
+    axios.get("http://172.23.176.1:3001/Favoritos").then(data=>setData1(data.data))
   },[
 
   ])
 
   const DesfavoritarItem = (id_favorito) => {
     setData1((prevData1) => {
-      axios.delete(`http://10.0.0.101:3001/item/${id_favorito}`
+      axios.delete(`http://172.23.176.1:3001/item/${id_favorito}`
     )
       return prevData1.filter((texto) => texto.id_favorito != id_favorito);
     });

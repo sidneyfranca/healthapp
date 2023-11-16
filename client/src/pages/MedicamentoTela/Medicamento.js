@@ -189,7 +189,7 @@ export function Medicamento() {
 
   useEffect(() => {
     axios
-      .get("http://10.0.0.101:3001/Favoritos")
+      .get("http://172.23.176.1:3001/Favoritos")
       .then(({data}) => {
         const lista = itens.map(item => {
           return{

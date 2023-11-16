@@ -11,7 +11,7 @@ export function EmployeeListItem(props) {
   };
 
   const submeterInformacao = (item) => {
-    Axios.post("http://10.0.0.101:3001/Favorito", { nome: item.nome, imagem: item.imagem }
+    Axios.post("http://172.23.176.1:3001/Favorito", { nome: item.nome, imagem: item.imagem }
     ),
     console.log(item);
   };
