@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const cors = require("cors");
 
 app.use(cors());
@@ -20,13 +20,22 @@ app.post("/Favorito", (req, res) => {
     db.query(SQL, [ nome, imagem ] , (err, result) => {
         console.log(err);
         console.log(result);
+        if (err){ 
+            res.send(err) 
+        } else {
+            res.send(result)
+        }
     })
 })
 
 app.get("/Favorito", (req, res) => {
     let sql = "SELECT * FROM Favorito";
     db.query(sql , (err, result) => {
-        res.send(result);
+        if (err){ 
+            res.send(err) 
+        } else {
+            res.send(result)
+        }
     })
 })
 
@@ -38,17 +47,14 @@ app.delete("/item/:id_favorito", (req, res) => {
 
     db.query(SQL, id_favorito, (err, result) => {
         console.log(err)
+        if (err){ 
+            res.send(err) 
+        } else {
+            res.send(result)
+        }
     })
 })
 
 app.listen(3001, () => {
-    console.log("rodando servidor");
-});
-
-app.start(3001).then(() => {
-    console.log("rodando servidor");
-});
-
-app.startCallback(3001, () => {
     console.log("rodando servidor");
 });

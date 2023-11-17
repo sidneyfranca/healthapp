@@ -10,11 +10,15 @@ export function EmployeeListItem(props) {
     setfavoritar(!favoritar);
   };
 
-  const submeterInformacao = (item) => {
-    Axios.post("http://172.23.176.1:3001/Favorito", { nome: item.nome, imagem: item.imagem }
-    ),
+  const submeterInformacao = async (item) => {
     console.log(item);
-  };
+     try{
+     await Axios.post("http://10.0.0.101:3006/Favorito", { nome: item.nome, imagem: item.imagem });
+     console.log("Item favoritado com sucesso:", item);
+   } catch (error) {
+     console.error("Erro ao favoritar item:", error);
+   }
+   };
 
   return (
     <View style={styles.container}>

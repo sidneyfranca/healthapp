@@ -8,15 +8,15 @@ export function Favorito() {
     
   ]);
 
-  useEffect(() => {
-    axios.get("http://172.23.176.1:3001/Favoritos").then(data=>setData1(data.data))
+  useEffect(  () => {
+    axios.get("http://10.0.0.101:3001/Favoritos").then(data=>setData1(data.data))
   },[
 
   ])
 
-  const DesfavoritarItem = (id_favorito) => {
-    setData1((prevData1) => {
-      axios.delete(`http://172.23.176.1:3001/item/${id_favorito}`
+  const DesfavoritarItem = async (id_favorito) => {
+    await setData1((prevData1) => {
+      axios.delete(`http://10.0.0.101:3001/item/${id_favorito}`
     )
       return prevData1.filter((texto) => texto.id_favorito != id_favorito);
     });
@@ -31,7 +31,7 @@ export function Favorito() {
             name={item.nome}
             image={item.imagem}
             props={item}
-            funcao={DesfavoritarItem}
+            funcao={() => DesfavoritarItem(item.id_favorito)}
           />
         )}
         keyExtractor={(item) => item.id_favorito}
