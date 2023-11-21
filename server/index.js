@@ -13,26 +13,26 @@ const db = mysql.createPool({
     database: "bditens",
 })
 
-app.post("/Favorito", (req, res) => {
+app.post("/favorito", (req, res) => {
     const { nome, imagem } = req.body;
     let SQL = "INSERT INTO Favorito ( nome, imagem ) VALUES (?, ?)";
     console.log(nome, imagem)
-    db.query(SQL, [ nome, imagem ] , (err, result) => {
+    db.query(SQL, [nome, imagem], (err, result) => {
         console.log(err);
         console.log(result);
-        if (err){ 
-            res.send(err) 
+        if (err) {
+            res.send(err)
         } else {
             res.send(result)
         }
     })
 })
 
-app.get("/Favorito", (req, res) => {
+app.get("/favoritos", (req, res) => {
     let sql = "SELECT * FROM Favorito";
-    db.query(sql , (err, result) => {
-        if (err){ 
-            res.send(err) 
+    db.query(sql, (err, result) => {
+        if (err) {
+            res.send(err)
         } else {
             res.send(result)
         }
@@ -41,14 +41,14 @@ app.get("/Favorito", (req, res) => {
 
 app.delete("/item/:id_favorito", (req, res) => {
     const { id_favorito } = req.params;
-    console.log("Informação: ", id_favorito) 
+    console.log("Informação: ", id_favorito)
 
     let SQL = "DELETE FROM Favorito WHERE (`id_favorito` = ?)"
 
     db.query(SQL, id_favorito, (err, result) => {
         console.log(err)
-        if (err){ 
-            res.send(err) 
+        if (err) {
+            res.send(err)
         } else {
             res.send(result)
         }

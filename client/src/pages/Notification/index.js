@@ -25,8 +25,8 @@ const VideoCallScreen = () => {
       </View>
       <View style={styles.controlsContainer}>
         <View style={styles.controls}>
-         
-        <TouchableOpacity style={styles.controlButton}>
+
+          <TouchableOpacity style={styles.controlButton}>
             <Text>Chat</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.controlButton}>
@@ -49,24 +49,24 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'stretch',
     justifyContent: 'center',
-    backgroundColor:'#fff'
+    backgroundColor: '#fff'
   },
   header: {
-    marginTop:30,
-    padding:10,
-    backgroundColor:'#fff',
+    marginTop: 30,
+    padding: 10,
+    backgroundColor: '#fff',
     justifyContent: 'center',
   },
   name: {
-    fontSize:20,
-    fontWeight:'bold',
-    marginLeft:20,
-    marginBottom:3,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginLeft: 20,
+    marginBottom: 3,
   },
   subText: {
-    fontSize:14,
-    marginLeft:20,
-    color:'#808080'
+    fontSize: 14,
+    marginLeft: 20,
+    color: '#808080'
   },
   opponentContainer: {
     flex: 1,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     height: 150,
   },
   controlsContainer: {
-    height:80,
+    height: 80,
     position: 'absolute',
     left: 0,
     right: 0,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 1,
   },
-  endCallButton:{
+  endCallButton: {
     backgroundColor: '#FF4500'
   }
 });

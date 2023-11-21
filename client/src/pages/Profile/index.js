@@ -68,7 +68,7 @@ export default LoginView = () => {
 }
 
 const submeterInformação = (texto) => {
-  Axios.post( "https://192.168.0.165:3001/item", {item: texto})
+  Axios.post("https://192.168.0.165:3001/item", { item: texto })
 }
 
 const styles = StyleSheet.create({

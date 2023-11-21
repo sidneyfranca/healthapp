@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
   listContainer: {
     alignItems: 'center',
   },
-  
+
   card: {
     shadowColor: '#00000021',
     shadowOffset: {

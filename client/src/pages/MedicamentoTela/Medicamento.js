@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useCallback, useState } from "react";
 import { StyleSheet, Text, View, TextInput } from "react-native";
 import { EmployeeList } from "./EmployeeList";
 import { AntDesign } from "@expo/vector-icons";
-import axios from "axios";
+import { api } from "../../lib/api";
+import { useFocusEffect } from "@react-navigation/native";
 
 export function Medicamento() {
-
   const [itens, setItens] = useState([
     {
       key: 1,
@@ -187,19 +187,19 @@ export function Medicamento() {
     },
   ]);
 
-  useEffect( () => {
-    axios
-      .get("http://10.0.0.101:3001/Favoritos")
-      .then(({data}) => {
+  useFocusEffect(useCallback(() => {
+    api.get("/favoritos")
+      .then(({ data }) => {
+
         const lista = itens.map((item) => ({
-            ...item,
-            favorited: data.some(d => d.nome === item.name)
-            
+          ...item,
+          favorited: data.some(d => d.nome.toLowerCase() === item.name.toLowerCase())
         }));
+
         setItens(lista)
-        console.log("TESTE",data);
       })
-  }, []);
+
+  }, []));
 
   return (
     <View style={styles.container}>

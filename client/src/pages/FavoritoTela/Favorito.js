@@ -1,31 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, TextInput, FlatList } from "react-native";
 import { ToDoList } from "./ToDoList/Todolist";
-import axios from "axios";
+import { api } from "../../lib/api";
 
 export function Favorito() {
-  const [data1, setData1] = useState([
-    
-  ]);
+  const [data, setData] = useState([]);
 
-  useEffect(  () => {
-    axios.get("http://10.0.0.101:3001/Favoritos").then(data=>setData1(data.data))
-  },[
-
-  ])
+  useEffect(() => {
+    api.get("/favoritos")
+      .then(data => setData(data.data))
+  }, [])
 
   const DesfavoritarItem = async (id_favorito) => {
-    await setData1((prevData1) => {
-      axios.delete(`http://10.0.0.101:3001/item/${id_favorito}`
-    )
-      return prevData1.filter((texto) => texto.id_favorito != id_favorito);
+    await api.delete(`/item/${id_favorito}`)
+
+    setData((prevData) => {
+      return prevData.filter((texto) => texto.id_favorito != id_favorito);
     });
   };
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={data1}
+        data={data}
         renderItem={({ item }) => (
           <ToDoList
             name={item.nome}

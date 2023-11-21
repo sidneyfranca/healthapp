@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 export function ToDoList({ props, funcao }) {
-  
+
   return (
     <View>
       <View style={styles.container}>

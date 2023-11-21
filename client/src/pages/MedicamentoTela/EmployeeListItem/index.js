@@ -1,24 +1,30 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import React, { useState } from "react";
-import Axios from "axios";
+import React, { useEffect, useState } from "react";
+import { api } from "../../../lib/api";
 
 export function EmployeeListItem(props) {
-  const [favoritar, setfavoritar] = useState(props.favorited);
+  const [favoritar, setFavoritar] = useState(false);
 
-  const favoritado = () => {
-    setfavoritar(!favoritar);
+  useEffect(() => {
+    setFavoritar(props.favorited);
+  }, [props]);
+
+  const handleFavorite = () => {
+    if (!favoritar) {
+      submeterInformacao({ nome: props.name, imagem: props.image });
+      setFavoritar(!favoritar);
+    }
   };
 
   const submeterInformacao = async (item) => {
-    console.log(item);
-     try{
-     await Axios.post("http://10.0.0.101:3006/Favorito", { nome: item.nome, imagem: item.imagem });
-     console.log("Item favoritado com sucesso:", item);
-   } catch (error) {
-     console.error("Erro ao favoritar item:", error);
-   }
-   };
+    try {
+      await api.post("/favorito", { nome: item.nome, imagem: item.imagem });
+      console.log("Item favoritado com sucesso:", item);
+    } catch (error) {
+      console.error("Erro ao favoritar item:", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -40,13 +46,10 @@ export function EmployeeListItem(props) {
         </View>
       </View>
       <TouchableOpacity
-        onPress={() => {
-          favoritado();
-          submeterInformacao({ nome: props.name, imagem: props.image });
-        }}
+        onPress={handleFavorite}
       >
         {favoritar ? (
-          <Ionicons name="star" size={30} color="yellow"></Ionicons>
+          <Ionicons name="star" size={30} color="blue"></Ionicons>
         ) : (
           <Ionicons name="star-outline" size={30} color="yellow"></Ionicons>
         )}
